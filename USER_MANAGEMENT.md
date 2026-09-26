@@ -46,7 +46,7 @@ A quick-reference guide for daily Linux user and group administration tasks.
 
 ## ➕ Creating Users
 
-\`\`\`bash
+```bash
 useradd username                     # create user (minimal defaults)
 useradd -m username                  # create with home directory
 useradd -m -s /bin/bash username     # set shell
@@ -55,13 +55,13 @@ useradd -m -g groupname username     # set primary group
 useradd -m -G grp1,grp2 username     # set secondary/supplementary groups
 useradd -u 1050 username             # set specific UID
 adduser username                     # interactive (Debian/Ubuntu)
-\`\`\`
+```
 
 ---
 
 ## 🔑 Setting Passwords
 
-\`\`\`bash
+```bash
 passwd username           # set/change password
 passwd -e username        # force change at next login
 passwd -l username        # lock account
@@ -69,13 +69,13 @@ passwd -u username        # unlock account
 passwd -S username        # check password status
 chage -l username          # view password expiry info
 chage -M 90 username       # set max password age (days)
-\`\`\`
+```
 
 ---
 
 ## ✏️ Modifying Users
 
-\`\`\`bash
+```bash
 usermod -l newname oldname       # rename user
 usermod -d /new/home -m username # change home dir (move contents)
 usermod -s /bin/zsh username     # change shell
@@ -84,7 +84,7 @@ usermod -g groupname username    # change primary group
 usermod -L username              # lock account
 usermod -U username              # unlock account
 usermod -e YYYY-MM-DD username   # set account expiry
-\`\`\`
+```
 
 > ⚠️ **Warning:** Never use `usermod -G` without `-a`. Without `-a`, it **replaces** all supplementary groups instead of adding to them.
 
@@ -92,17 +92,17 @@ usermod -e YYYY-MM-DD username   # set account expiry
 
 ## 🗑️ Deleting Users
 
-\`\`\`bash
+```bash
 userdel username           # delete user, keep home dir
 userdel -r username        # delete user + home dir + mail spool
 userdel -f username        # force delete (even if logged in)
-\`\`\`
+```
 
 ---
 
 ## 👥 Group Management
 
-\`\`\`bash
+```bash
 groupadd groupname             # create group
 groupadd -g 1050 groupname     # create with specific GID
 groupmod -n newname oldname    # rename group
@@ -111,31 +111,31 @@ groups username                 # list groups a user belongs to
 getent group groupname          # show group members
 gpasswd -a username groupname   # add user to group
 gpasswd -d username groupname   # remove user from group
-\`\`\`
+```
 
 ---
 
 ## 🔄 Switching Users / Privilege
 
-\`\`\`bash
+```bash
 su username                # switch user (partial env)
 su - username               # switch user with full login environment
 sudo command                # run command as root (per sudoers rules)
 sudo -u username command    # run command as specific user
 visudo                      # safely edit /etc/sudoers
-\`\`\`
+```
 
 ---
 
 ## 🔐 Permissions Quick Reference
 
-\`\`\`bash
+```bash
 chown user:group file       # change owner + group
 chown -R user:group dir/    # recursive
 chgrp groupname file        # change group only
 chmod 755 file               # rwxr-xr-x
 chmod u+x file                # add execute for owner
-\`\`\`
+```
 
 | Octal | Permission |
 |---|---|
@@ -152,12 +152,12 @@ chmod u+x file                # add execute for owner
 
 ## ⚡ Useful One-Liners
 
-\`\`\`bash
+```bash
 cut -d: -f1 /etc/passwd              # list all usernames
 awk -F: '{print $1}' /etc/group      # list all group names
 getent passwd username               # check if user exists
 lslogins                              # detailed overview of all users (util-linux)
-\`\`\`
+```
 
 ---
 
