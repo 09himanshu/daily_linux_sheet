@@ -61,16 +61,48 @@ adduser username                     # interactive (Debian/Ubuntu)
 
 ## 🔑 Setting Passwords
 
-```bash
-passwd username           # set/change password
-passwd -e username        # force change at next login
-passwd -l username        # lock account
-passwd -u username        # unlock account
-passwd -S username        # check password status
-chage -l username          # view password expiry info
-chage -M 90 username       # set max password age (days)
+```
+passwd username              # set/change password
+passwd -e username           # force change at next login
+passwd -l username           # lock account
+passwd -u username           # unlock account
+passwd -S username           # check password status
+```
+---
+
+## View Aging Info
+
+```
+chage -l username            # view all aging info (last change, expiry, min/max, warn)
+chage username               # interactive mode (prompts for each value)
 ```
 
+## Set Aging Policy (chage)
+
+```
+chage -m 7 username          # min days between password changes
+chage -M 90 username         # max days before password must be changed
+chage -W 14 username         # warn user 14 days before expiry
+chage -I 30 username         # inactive days after expiry before account locks
+chage -E 2026-12-31 username # account expiry date (YYYY-MM-DD)
+chage -E -1 username         # remove account expiry (never expires)
+chage -d 0 username          # force password change at next login
+chage -d 2026-10-24 username # set "last password change" date manually
+chage -M 99999 username      # effectively disable password expiry
+```
+
+## All in One Command
+```
+chage -m 7 -M 90 -W 14 -I 30 username
+```
+
+## Same Thing Using passwd
+```
+passwd -n 7 username         # min days
+passwd -x 90 username        # max days
+passwd -w 14 username        # warning days
+passwd -i 30 username        # inactive days
+```
 ---
 
 ## ✏️ Modifying Users
