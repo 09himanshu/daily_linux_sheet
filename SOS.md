@@ -30,11 +30,8 @@ sos report
 ## 2. Install
 
 ```bash
-# RHEL / CentOS / Rocky / Fedora
-sudo dnf install sos
-
 # Ubuntu / Debian
-sudo apt install sos
+sudo apt install sosreport
 ```
 
 Version check:
